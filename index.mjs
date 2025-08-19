@@ -15,14 +15,14 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
 	cors: {
-		origin: "https://type-rush-frontend.vercel.app/",
+		origin: "https://type-rush-frontend.vercel.app",
 		credentials: true,
 	},
 });
 const PORT = process.env.PORT || 8080;
 app.use(
 	cors({
-		origin: "https://type-rush-frontend.vercel.app/",
+		origin: "https://type-rush-frontend.vercel.app",
 		credentials: true,
 	})
 );
