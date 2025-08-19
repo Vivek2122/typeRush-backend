@@ -34,23 +34,23 @@ router.get(
 	"/auth/google/callback",
 	passport.authenticate("google", {
 		session: false,
-		failureRedirect: "http://localhost:5173/login",
+		failureRedirect: "https://type-rush-frontend.vercel.app/login",
 	}),
 	(req, res) => {
 		const { accessToken, refreshToken } = req.user;
 		res.cookie("accessToken", accessToken, {
 			httpOnly: true,
 			sameSite: "Lax",
-			secure: false,
+			secure: true,
 			maxAge: 15 * 60 * 1000,
 		});
 		res.cookie("refreshToken", refreshToken, {
 			httpOnly: true,
 			sameSite: "Lax",
-			secure: false,
+			secure: true,
 			maxAge: 7 * 24 * 60 * 60 * 1000,
 		});
-		res.redirect("http://localhost:5173/play");
+		res.redirect("https://type-rush-frontend.vercel.app/play");
 	}
 );
 
