@@ -40,13 +40,13 @@ router.get(
 		const { accessToken, refreshToken } = req.user;
 		res.cookie("accessToken", accessToken, {
 			httpOnly: true,
-			sameSite: "Lax",
+			sameSite: "None",
 			secure: true,
 			maxAge: 15 * 60 * 1000,
 		});
 		res.cookie("refreshToken", refreshToken, {
 			httpOnly: true,
-			sameSite: "Lax",
+			sameSite: "None",
 			secure: true,
 			maxAge: 7 * 24 * 60 * 60 * 1000,
 		});
