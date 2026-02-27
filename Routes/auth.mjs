@@ -7,6 +7,7 @@ import {
 } from "../Controllers/auth.mjs";
 import User from "../Models/user.mjs";
 import passport from "../Auth/passport.mjs";
+import axios from "axios";
 
 const router = express.Router();
 
@@ -16,6 +17,16 @@ router.post("/logout", handleLogout);
 router.get("/isAuthenticated", isAuthenticated, (req, res) => {
 	return res.status(200).json({ msg: "Already logged in." });
 });
+router.get("/getWords", async(req, res) => {
+	try {
+		const response = await axios.get("https://random-word-api.herokuapp.com/word?number=50&length=5")
+		const words = response.data;
+		return res.status(200).json({ words });
+	} catch (error) {
+		console.log("Error fetching the words", error)
+		res.status(500).json({ msg: "Failed to fetch the words" });	
+	}
+})
 router.get("/getUserInfo", isAuthenticated, async (req, res) => {
 	try {
 		const email = req.user.email;
